@@ -21,8 +21,10 @@ from unet.unet_transfer import UNet16, input_size
 from utils import load_unet_vgg16, load_unet_resnet_101, load_unet_resnet_34
 
 DEVICE = 'mps' # Tested on MacBook. Change this parameter depending on the system used.
+
 if "__file__" in globals():
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 ####################
 ## FUNCTIONS
 def crack_detection_alghorithm (image_directory, model, cut_off_threshold = 0.4, stride_ratio = 0.5, resize_ratio = 1, method = 'patched'):
@@ -597,7 +599,7 @@ channel_means = [0.485, 0.456, 0.406]
 channel_stds  = [0.229, 0.224, 0.225]
 train_tfms = transforms.Compose([transforms.ToTensor(), transforms.Normalize(channel_means, channel_stds)])
 
-model_path = SCRIPT_DIR + '/out_model/model_best_v2.pt'
+model_path = SCRIPT_DIR + '/out_model/unet_model.pt'
 model = load_unet_resnet_101(model_path = model_path)
 model.eval()
 
